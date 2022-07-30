@@ -2,7 +2,7 @@
 
 ![My image](./terraform.png)
 
-![My image](./ansible.png)
+![My image](./ansible1.png)
 
 ## Using Jenkins to Deploy nodeJS app on EC2 instance and using terraform to build the infrastructure on AWS.
 

@@ -1,0 +1,7 @@
+---
+- hosts: private
+  become: yes
+  vars: 
+  
+  roles:
+    - install-jenkins

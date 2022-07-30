@@ -1,0 +1,71 @@
+- name: Add signing key
+  ansible.builtin.apt_key:
+    url: "https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg"
+    state: present
+- name: Add repository into sources list
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ ansible_architecture }}] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
+    state: present
+    filename: docke
+- name: Install Docker
+  ansible.builtin.apt:
+    name:
+      - docker
+      - docker.io
+      - docker-compose
+      - docker-registry
+    state: latest
+    update_cache: true
+
+- name: Ensure docker deamon is running
+  service:
+    name: docker
+    state: started
+  become: true
+
+- name: Ensure My docker container is running
+  docker_container:
+    name: testing
+    image: busybox
+    state: started
+  become: true
+
+- name: Update repository
+  apt_repository:
+   repo: 'ppa:git-core/ppa'
+   state: present
+
+- name: Install git
+  apt:
+   name: git
+   state: present
+   update_cache: yes
+
+
+- name: Update APT package manager repositories cache
+  become: true
+  apt:
+    update_cache: yes
+
+
+- name: Install Java using Ansible
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+       - openjdk-11-jdk
+
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: /home/ubuntu/jenkins_home
+    state: directory
+    mode: '0777'
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: /home/amir/Terraform-Demo/configuration-ec2/agent.jar
+    dest: /home/ubuntu/bin
+    owner: ubuntu
+    mode: '0644'

@@ -25,3 +25,7 @@ output "sg_allow_ssh_id" {
 output "sg_allow_ssh_3000_id" {
   value = aws_security_group.allow_ssh_3000.id
 }
+
+output "sg_allow_http_id" {
+  value = aws_security_group.allow_http.id
+}

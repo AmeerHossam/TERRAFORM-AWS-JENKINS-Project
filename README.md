@@ -160,4 +160,4 @@ pipeline{
     }
 }
 ```
-### You can access the app on (loadbalancerDNS:3000)
+### You can access the app on (loadbalancerDNS)

@@ -134,7 +134,7 @@ pipeline{
     stages {
         stage('preparation'){
             steps{
-                git branch:"rds_redis", url:'https://github.com/mahmoud254/jenkins_nodejs_example'
+                git branch:"rds_redis", url:'<the github url which has the code you want to access>'
             }
         }
         stage('ci'){
